@@ -1,41 +1,255 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Expediente pericial</title><style>:root{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:#242629;color:#e9eaec;font-size:14px;color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:#242629}button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px solid #a4abb4;outline-offset:2px}header{background:#2d3034;border-bottom:1px solid #46494d;padding:22px max(24px,calc((100% - 1080px)/2))}h1{margin:0;font-size:23px;letter-spacing:-.7px;font-weight:700}header p{margin:5px 0 0;color:#aeb2b8;font-size:13px}main{max-width:1128px;padding:26px 24px 70px;margin:auto}h2{font-size:14px}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.stat{background:#303337;border:1px solid #484c51;border-radius:12px;padding:15px 18px;color:#b0b5bb;font-size:12px}.stat b{display:block;color:#f0f1f2;font-size:26px;letter-spacing:-1px;margin-top:3px}.stat:last-child b{color:#e7eaed}.bar{height:5px;background:#42464b;overflow:hidden;border-radius:9px;margin:17px 0 24px}.bar i{display:block;height:100%;background:#a5afb8;transition:width .2s}.toolbar{display:flex;gap:9px;flex-wrap:wrap;align-items:center;margin:0 0 15px}.toolbar input{flex:1 1 340px}.toolbar select{flex:0 1 175px}.control{border:1px solid #565a60;background:#33373b;color:#f0f1f2;border-radius:8px;padding:10px 12px;min-width:0}.control::placeholder{color:#afb5bd}.btn{background:#393d42;color:#f0f1f3;border:1px solid #585d64;padding:10px 13px;border-radius:8px;font-weight:500}.btn:hover{background:#494e54}.group{border:1px solid #45494e;border-radius:12px;background:#303337;margin:12px 0;overflow:hidden}.group h2{padding:13px 17px;margin:0;background:#373a3e;border-bottom:1px solid #4b4f55;font-size:13px;color:#e0e2e5;font-weight:650}.item{width:100%;display:flex;gap:12px;align-items:center;justify-content:space-between;text-align:left;background:#303337;color:#e7e9ec;border:0;border-bottom:1px solid #45494d;padding:13px 17px;min-height:44px;line-height:1.45}.item:last-child{border-bottom:0}.item:hover{background:#3c4045}.item span:first-child{flex:1}.item span:first-child:before{content:'○';color:#acb2b9;font-size:17px;margin-right:11px}.tag{font-size:11px;color:#d2d5d9;white-space:nowrap;border-radius:20px;background:#44494e;padding:5px 9px}.detail{position:fixed;z-index:5;top:0;right:0;height:100%;width:min(100%,510px);background:#2d3034;border-left:1px solid #53575d;padding:27px 27px 40px;overflow:auto;box-shadow:-25px 0 90px #080a0d77;display:none}.detail.show{display:block}.detail h2{font-size:22px;font-weight:680;letter-spacing:-.5px;margin:28px 0 20px;line-height:1.4;color:#f2f3f4}.veil{position:fixed;inset:0;background:#07090db3;z-index:4;display:none}.veil.show{display:block}.row{display:flex;align-items:center;justify-content:space-between;gap:12px}.row small{color:#bcc0c6}.field{display:block;color:#cbd0d6;font-weight:600;font-size:12px;margin:20px 0 8px}.full{width:100%}textarea{resize:vertical}.files{list-style:none;margin:13px 0 0;padding:0}.files li{padding:10px 0;display:flex;gap:8px;justify-content:space-between;align-items:center;border-bottom:1px solid #494e54}.files a{color:#e5e8ed;overflow-wrap:anywhere}.files button{font-size:12px;padding:6px 9px}.note{font-size:12px;line-height:1.6;color:#b2b7bd;margin:9px 0 20px}.drop{display:block;border:1px dashed #868c95;border-radius:9px;background:#393d42;padding:23px;cursor:pointer;color:#f0f1f2;font-weight:600;text-align:center}.drop:hover{background:#484d53}.empty{color:#b6bbc1}.toolbar .btn{font-size:12px}@media(max-width:620px){header{padding:20px 17px}main{padding:18px 14px}.grid{grid-template-columns:repeat(2,1fr)}.stat{padding:13px}.toolbar input{flex-basis:100%}.toolbar select{flex:1}.toolbar .btn{flex:1}.detail{padding:20px}.item{padding:12px}.tag{font-size:10px}h1{font-size:20px}}.tag[data-status="done"]{background:#183f31;color:#71e3ab;border:1px solid #337857}.tag[data-status="pending"]{background:#493b16;color:#ffd36b;border:1px solid #806520}.tag[data-status="review"]{background:#273f54;color:#9ac9ed;border:1px solid #43637c}.tag[data-status="na"]{background:#44474b;color:#c2c5ca;border:1px solid #5a5e63}.item[data-status="done"] span:first-child:before{content:"✓";color:#71e3ab}.item[data-status="pending"] span:first-child:before{content:"○";color:#ffd36b}.item[data-status="review"] span:first-child:before{content:"◐";color:#9ac9ed}.stat:nth-child(2) b{color:#71e3ab}.stat:nth-child(3) b{color:#ffd36b}.bar i{background:#58ba83}.recovery{padding:12px 15px;margin:14px 0;border:1px solid #527b69;background:#283f37;color:#c6f0d9;border-radius:9px;line-height:1.5;font-size:13px}.recovery[hidden]{display:none}.cloudbar{padding:16px 20px;margin:0 0 18px;background:#303337;border:1px solid #4f5559;border-radius:12px}.cloudhead{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}.cloudhead strong{font-size:14px}.cloudhead p{margin:5px 0;color:#b8c3c3;font-size:12px}.cloudhead #cloudUser{font-size:12px;color:#c9d0d2}.cloudactions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.cloudactions .control{min-width:200px}.cloudactions [hidden]{display:none}@media(max-width:620px){.cloudactions{width:100%}.cloudactions .control{width:100%}.cloudactions .btn{flex:1}}</style></head><body><header><h1>Expediente socioeconómico</h1><p>Pericia de alimentos · Documentos y seguimiento</p></header><main><section class="cloudbar"><div class="cloudhead"><div><strong>Almacenamiento de documentos</strong><p id="cloudStatus">Comprobando conexión...</p><span id="cloudUser"></span></div><div class="cloudactions"><input class="control" id="cloudEmail" type="email" placeholder="Tu correo electrónico" aria-label="Correo para acceso a nube"><button class="btn" id="cloudLogin">Entrar a la nube</button><button class="btn" id="cloudSync" hidden>↑ Subir mis datos locales</button><button class="btn" id="cloudLogout" hidden>Cerrar sesión</button></div></div></section><div class="grid"><div class="stat">Requisitos<b id="total">0</b></div><div class="stat">Completados<b id="done">0</b></div><div class="stat">Por revisar<b id="pending">0</b></div><div class="stat">Progreso<b id="percent">0%</b></div></div><div class="bar"><i id="progress"></i></div><div class="toolbar"><input class="control" id="search" placeholder="Buscar un documento..."><select class="control" id="filter"><option value="all">Todos los estados</option><option value="pending">Pendiente</option><option value="review">En revisión</option><option value="done">Completo</option><option value="na">No corresponde</option></select><button class="btn" id="backup">↓ Respaldo</button><button class="btn" id="restore">↑ Restaurar</button><input type="file" id="import" accept=".json" hidden></div><p class="recovery" id="legacyNotice" hidden></p><div id="groups"></div><p class="note">Los archivos locales se conservan en este dispositivo. Al iniciar sesión y sincronizar podrás consultarlos desde otros computadores. Mantén un respaldo independiente.</p></main><div id="veil" class="veil"></div><aside class="detail" id="detail"><div class="row"><small id="cat"></small><button class="btn" id="close">Cerrar ×</button></div><h2 id="title"></h2><label class="field">Estado</label><select class="control full" id="status"><option value="pending">Pendiente</option><option value="review">En revisión</option><option value="done">Completo</option><option value="na">No corresponde</option></select><label class="field">Adjuntar documentos</label><label class="drop">＋ Seleccionar archivos PDF, fotos u otros<input type="file" multiple hidden id="upload"></label><ul class="files" id="files"></ul><label class="field">Notas u observaciones</label><textarea class="control full" rows="4" id="notes" placeholder="Qué falta, fechas, comentarios..."></textarea><p class="note">Los archivos se conservan localmente. Si tienes la nube conectada, también se sincronizan. Usa «Respaldo» para guardar una copia independiente.</p></aside><script>
-const categories=[["Identidad y familia","Certificado de nacimiento del adulto peritado/a|Certificado de antecedentes del adulto peritado/a|Certificado de nacimiento hijos/as|Certificado de matrimonio en caso de corresponder|Cese de convivencia (en caso de corresponder)"],["Ingresos y tributación","Carpeta Tributaria completa personalizada últimos 4 años: (Se obtiene en la página www.sii.cl Se enviarán indicaciones específicas de cómo acceder a ella en caso de presentar dudas)|Últimas 12 liquidaciones de sueldo|Copia del contrato laboral|Informes anuales boleta de honorarios SII (página www.sii.cl) últimos 2 años|Otros documentos que acrediten ingresos: contratos de arriendos de propiedades, colilla de pensión, copia de cartola de cuenta bancaria en donde se acrediten pagos o depósitos monetarios, entre otros.|Liquidaciones de sueldo del periodo en que se fijó la actual pensión de alimentos|Certificado de remuneraciones imponibles AFP con Rut del empleador|Certificado Cotizaciones AFP histórico|Certificado de cuentas AFP( en donde se señale total de ahorros previsionales, cuentas APV entre otras)"],["Patrimonio y cuentas","Cartola o certificados depósito a plazos, fondos mutuos, etc.|Consulta SII propiedades asociadas al Rut (página www.sii.cl)|Certificado Avalúo Fiscal de las propiedades (página www.sii.cl)|Certificado Avalúo Fiscal automóvil|Permiso de circulación automóvil|Cartolas de todas las cuentas corrientes y/o vista (últimos 12 meses)|Estados de cuenta tarjetas de crédito (últimos 12 meses)|Certificado o documentación que acredite deudas (si corresponde)|Cartola cuenta pensión de alimentos (si corresponde) últimos 12 meses|En caso de formar parte de una o más sociedades, remitir Escritura, Balance General (firmada por contador/a) y Carpeta Tributaria (incluyendo F22 y F29 actualizado) de cada una de ellas."],["Vivienda y gastos","Contrato de arriendo de la vivienda en donde vive / copia de la escritura de la vivienda|Boletas de servicios básicos (agua, gas, luz)|Boletas de otros servicios: internet, telefonía, TV cable, etc|Documento que acredite pago de dividendo|Documento que acredite créditos hipotecarios (monto crédito, cuotas, deuda actualizada)|Documento bancario que acredite créditos de consumo (monto crédito, cuotas, deuda actualizada)|Boletas de compras mensuales o documentos que acrediten gastos (supermercado, peluquería, vestimenta, dentista, médico, vacaciones, entretención, mensualidad o matrículas escolares, útiles escolares, etc).|Certificado de afiliación a FONASA o ISAPRE y cargas familiares|Otros documentos que acrediten gastos familiares"],["Salud y estudios","Cartola de prestaciones ISAPRE (pude obtenerla en la página de su Isapre, en donde se señalan las atenciones y reembolsos realizados por usted y sus cargas familiares)|Certificado o contrato seguros de salud complementarios (seguros enfermedades catastróficas, seguros de vida, seguros escolares, etc)|Certificados o informes médicos, psiquiátricos, psicológicos, en caso de asistir a tratamientos o terapias.|Recetas o documentos que acrediten tratamientos|Certificado de estudios o títulos técnicos o universitarios"],["Hijos y judiciales","Carnet de control de salud en caso de corresponder, o documento que acredite asistencia a controles médicos o pediátricos del niño/a a su cargo|Certificado alumno regular de los hijos o niños a su cargo|Certificado de notas o informes escolares del niño/a (s)|Documentación que acredite antecedentes judiciales: causas anteriores."]];const docs=categories.flatMap(([group,s],ci)=>s.split('|').map((title,j)=>({id:ci+'-'+j,ci,title})));const $=id=>document.getElementById(id);let db,legacyDb=null,active=null;let metadata={};const labels={pending:'Pendiente',review:'En revisión',done:'Completado',na:'No corresponde'};
-function openDb(){return new Promise((resolve,reject)=>{const r=indexedDB.open('pericia-expediente-v1',1);r.onupgradeneeded=()=>{r.result.createObjectStore('meta',{keyPath:'id'});r.result.createObjectStore('files',{keyPath:'id'}).createIndex('doc','doc')};r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}function request(r){return new Promise((resolve,reject)=>{r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error)})}function transact(s,mode='readonly'){return db.transaction(s,mode).objectStore(s)}async function save(s,x){await request(transact(s,'readwrite').put(x))}async function del(s,id){await request(transact(s,'readwrite').delete(id))}async function byDoc(id){const current=await request(transact('files').index('doc').getAll(id));if(!legacyDb)return current;const position=docs.findIndex(d=>d.id===id);if(position<0)return current;const originalId='d'+String(position+1).padStart(2,'0');const old=await request(legacyDb.transaction('files').objectStore('files').index('doc').getAll(originalId));const known=new Set(current.map(f=>f.id));return current.concat(old.filter(f=>!known.has(f.id)).map(f=>({...f,source:'legacy'})))}function stat(id){return (window.periciaCloud?.online ? window.periciaCloud.meta[id]?.status : null) || metadata[id]?.status||'pending'}function safe(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;','"':'&quot;'}[c]))}
-function render(){const q=$('search').value.toLowerCase(),f=$('filter').value;const done=docs.filter(x=>stat(x.id)==='done').length;const na=docs.filter(x=>stat(x.id)==='na').length;const pending=docs.filter(x=>['pending','review'].includes(stat(x.id))).length;const pct=docs.length===na?100:Math.round(done/(docs.length-na)*100);$('total').textContent=docs.length;$('done').textContent=done;$('pending').textContent=pending;$('percent').textContent=pct+'%';$('progress').style.width=pct+'%';$('groups').replaceChildren();categories.forEach(([name],ci)=>{const shown=docs.filter(d=>d.ci===ci&&d.title.toLowerCase().includes(q)&&(f==='all'||stat(d.id)===f));if(!shown.length)return;const sec=document.createElement('section');sec.className='group';const head=document.createElement('h2');head.textContent=name+' · '+docs.filter(d=>d.ci===ci&&stat(d.id)==='done').length+'/'+docs.filter(d=>d.ci===ci).length;sec.append(head);shown.forEach(d=>{const b=document.createElement('button');b.className='item';const span=document.createElement('span');span.textContent=d.title;const tag=document.createElement('span');tag.className='tag';tag.textContent=labels[stat(d.id)];tag.dataset.status=stat(d.id);b.dataset.status=stat(d.id);b.append(span,tag);b.onclick=()=>open(d);sec.append(b)});$('groups').append(sec)})}
-async function open(d){active=d;$('cat').textContent=categories[d.ci][0];$('title').textContent=d.title;$('status').value=stat(d.id);$('notes').value=(window.periciaCloud?.online?window.periciaCloud.meta[d.id]?.notes:null)??metadata[d.id]?.notes??'';$('detail').classList.add('show');$('veil').classList.add('show');await renderFiles()}function close(){$('detail').classList.remove('show');$('veil').classList.remove('show');active=null}
-async function renderFiles(){if(!active)return;const id=active.id;const arr=await byDoc(id);const remote=window.periciaCloud?.listDoc(id)||[];for(const f of remote){if(!arr.some(x=>String(x.id)===f.client_file_id))arr.push({id:f.id,name:f.file_name,source:'cloud',cloud:f})}if(!active||active.id!==id)return;$('files').replaceChildren();for(const x of arr){const li=document.createElement('li');const a=document.createElement('a');a.href='#';a.textContent=x.name+(x.source==='legacy'?' · recuperado':x.source==='cloud'?' · en la nube':'');a.onclick=async e=>{e.preventDefault();if(x.source==='cloud'){try{await window.periciaCloud.download(x.cloud)}catch(err){alert('No se pudo descargar: '+err.message)}return}const url=URL.createObjectURL(x.blob);const link=document.createElement('a');link.href=url;link.download=x.name;link.click();setTimeout(()=>URL.revokeObjectURL(url),60000)};const b=document.createElement('button');b.className='btn';b.textContent='Eliminar';b.onclick=async()=>{if(x.source==='cloud'){alert('Este archivo está guardado en la nube; por seguridad no se elimina desde este panel.');return}if(x.source==='legacy'){alert('Este documento está en el almacenamiento original. Por seguridad no se eliminará desde esta versión. Guarda primero un respaldo completo.');return}if(!confirm('¿Eliminar este archivo local?'))return;await del('files',x.id);await renderFiles()};li.append(a,b);$('files').append(li)}if(!arr.length){const li=document.createElement('li');li.className='empty';li.textContent='Sin archivos adjuntos';$('files').append(li)}}
-$('close').onclick=close;$('veil').onclick=close;$('search').oninput=render;$('filter').onchange=render;$('status').onchange=async()=>{if(!active)return;metadata[active.id]={id:active.id,status:$('status').value,notes:$('notes').value};await save('meta',metadata[active.id]);if(window.periciaCloud?.online)try{await window.periciaCloud.saveMeta(metadata[active.id])}catch(err){alert('Guardado local; falló la sincronización: '+err.message)}render()};$('notes').onchange=async()=>{if(!active)return;metadata[active.id]={id:active.id,status:$('status').value,notes:$('notes').value};await save('meta',metadata[active.id]);if(window.periciaCloud?.online)try{await window.periciaCloud.saveMeta(metadata[active.id])}catch(err){alert('Guardado local; falló la sincronización: '+err.message)}};
-$('upload').onchange=async e=>{if(!active)return;const id=active.id;for(const file of e.target.files){const entry={id:crypto.randomUUID(),doc:id,name:file.name,blob:file,date:new Date().toISOString()};await save('files',entry);if(window.periciaCloud?.online)try{await window.periciaCloud.upload(entry)}catch(err){alert('Archivo conservado localmente. No se pudo subir a la nube: '+err.message)}}e.target.value='';await renderFiles()};
-const toB64=blob=>new Promise((resolve,reject)=>{const r=new FileReader();r.onload=()=>resolve(String(r.result).split(',')[1]);r.onerror=()=>reject(r.error);r.readAsDataURL(blob)});const fromB64=(s,type)=>new Blob([Uint8Array.from(atob(s),c=>c.charCodeAt(0))],{type});
-$('backup').onclick=async()=>{const files=await request(transact('files').getAll());if(legacyDb){const originalFiles=await request(legacyDb.transaction('files').objectStore('files').getAll());const seen=new Set(files.map(f=>f.id));for(const f of originalFiles){const index=Number(/^d(\d+)$/.exec(f.doc)?.[1])-1;if(index>=0&&index<docs.length&&!seen.has(f.id)){files.push({...f,doc:docs[index].id});seen.add(f.id)}}}const packed=[];for(const f of files)packed.push({...f,blob:await toB64(f.blob),type:f.blob.type});const json=JSON.stringify({version:1,metadata,files:packed});const u=URL.createObjectURL(new Blob([json],{type:'application/json'}));const a=document.createElement('a');a.href=u;a.download='respaldo-pericia-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000)};$('restore').onclick=()=>$('import').click();$('import').onchange=async e=>{try{const parsed=JSON.parse(await e.target.files[0].text());if(parsed.version!==1||!Array.isArray(parsed.files)||!parsed.metadata)throw Error('Respaldo inválido');if(!confirm('Esto combinará los datos importados con los actuales. ¿Continuar?'))return;for(const v of Object.values(parsed.metadata)){metadata[v.id]=v;await save('meta',v)}for(const f of parsed.files)await save('files',{id:f.id,doc:f.doc,name:f.name,date:f.date,blob:fromB64(f.blob,f.type)});render();alert('Respaldo restaurado')}catch(err){alert('No se pudo importar: '+err.message)}e.target.value=''};
-async function readLegacy(){
-  try{
-    legacyDb=await new Promise((resolve,reject)=>{
-      const r=indexedDB.open('pericia-socioeconomica-local-v1',1);
-      r.onupgradeneeded=()=>{r.transaction.abort()};
-      r.onsuccess=()=>resolve(r.result);
-      r.onerror=()=>reject(r.error);
-    });
-    if(!legacyDb.objectStoreNames.contains('meta')||!legacyDb.objectStoreNames.contains('files')){legacyDb.close();legacyDb=null;return}
-    const source=await request(legacyDb.transaction('meta').objectStore('meta').getAll());
-    let recoveredStates=0;
-    for(const m of source){
-      const index=Number(/^d(\d+)$/.exec(m.id)?.[1])-1;
-      if(index<0||index>=docs.length||!Number.isInteger(index))continue;
-      const docId=docs[index].id;
-      if(!metadata[docId]){
-        const next={id:docId,status:m.status==='complete'?'done':(m.status||'pending'),notes:m.notes||''};
-        metadata[docId]=next;
-        await save('meta',next);
-        recoveredStates++;
-      }
-    }
-    const count=await request(legacyDb.transaction('files').objectStore('files').count());
-    const notice=document.getElementById('legacyNotice');
-    if(count>0){notice.hidden=false;notice.textContent='Se encontraron '+count+' archivo(s) en el almacenamiento original. Se mostrarán junto a los actuales, sin borrar los originales. Descarga «Respaldo» para guardar una copia de todos.';}
-    else if(recoveredStates){notice.hidden=false;notice.textContent='Se recuperaron '+recoveredStates+' estados y notas de la primera versión del dashboard.'}
-  }catch(e){legacyDb=null}
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<title>Expediente socioeconómico</title>
+<style>
+:root{color-scheme:dark;font:14px/1.5 Inter,system-ui,-apple-system,"Segoe UI",sans-serif;background:#25272a;color:#f2f3f4}
+*{box-sizing:border-box}body{margin:0}button,input,textarea,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.5;cursor:not-allowed}
+[hidden]{display:none!important}:focus-visible{outline:2px solid #9aafb4;outline-offset:3px}
+header{background:#2c2e32;border-bottom:1px solid #41454a;padding:22px max(24px,calc((100% - 1110px)/2))}
+header h1{margin:0;font-size:23px;letter-spacing:-.7px}header p{color:#b0b5bd;margin:3px 0 0;font-size:12px}
+main{max-width:1158px;padding:28px 24px 90px;margin:auto}
+h2{font-size:16px;margin:0}
+small,.muted{color:#b6bbc2}
+.btn{border:1px solid #5a6068;border-radius:8px;padding:10px 13px;color:#edf0f2;background:#3a3e43;font-weight:550;transition:background .15s}
+.btn:hover:not(:disabled){background:#4a5057}.btn.primary{background:#e9ebee;border-color:#e9ebee;color:#222a30}.btn.primary:hover:not(:disabled){background:#d0d5db}
+.field{padding:10px 12px;background:#363a40;border:1px solid #575c64;color:#fff;border-radius:8px;min-width:0}
+.field::placeholder{color:#aeb7bf}
+.panel{background:#303338;border:1px solid #484d54;border-radius:13px}
+.gate{max-width:550px;padding:25px;margin:55px auto}.gate h2{font-size:22px;margin-bottom:7px}.gate p{color:#b9bec6}
+.gate form{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}.gate input{flex:1;min-width:200px}.statusline{color:#b6c4cc;font-size:12px;min-height:20px}
+.topbar{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:15px 18px;margin-bottom:20px}
+.topbar strong{font-size:14px}.topbar p{margin:4px 0 0;color:#acb7bd;font-size:12px}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.metric{background:#303338;border:1px solid #494e55;border-radius:12px;padding:16px 18px;color:#b6bec7;font-size:12px}
+.metric strong{display:block;margin-top:3px;color:#f6f7f8;font-size:28px;line-height:1.2;letter-spacing:-1px}
+.metric.green strong{color:#65d79b}.metric.yellow strong{color:#f1c75e}
+.progress{margin:18px 0 24px;height:6px;border-radius:8px;background:#444a50;overflow:hidden}.progress span{display:block;height:100%;width:0;background:#63cd98;transition:width .2s}
+.toolbar{display:flex;gap:9px;margin:0 0 16px;flex-wrap:wrap}.toolbar input{flex:1;min-width:230px}.toolbar select{min-width:165px}
+.group{margin:12px 0;background:#303338;border:1px solid #494d54;border-radius:12px;overflow:hidden}
+.group h2{padding:12px 17px;font-size:13px;color:#e2e5e9;background:#373b40;border-bottom:1px solid #4b5056}
+.doc{width:100%;padding:14px 16px;border:0;border-bottom:1px solid #474c53;background:transparent;text-align:left;color:#edf0f1;display:flex;align-items:center;justify-content:space-between;gap:12px;line-height:1.45}
+.doc:last-child{border-bottom:0}.doc:hover{background:#3b4045}.docname{flex:1;min-width:0}
+.count{font-size:11px;white-space:nowrap;color:#afb6c0}
+.pill{display:inline-flex;align-items:center;white-space:nowrap;border-radius:18px;padding:4px 10px;font-size:11px;background:#454a50;color:#d1d5db;border:1px solid #595f65}
+.pill.done{background:#1b4132;color:#70eba9;border-color:#367a59}.pill.pending{background:#4e3f19;color:#ffd56d;border-color:#766329}
+.pill.review{background:#243e52;color:#a6d7ff;border-color:#446581}.pill.na{background:#474b50;color:#d7dae0;border-color:#5c6168}
+.doc .mark{font-size:18px;color:#ffd56d;width:19px;flex-shrink:0}.doc[data-status=done] .mark{color:#70eba9}.doc[data-status=review] .mark{color:#a6d7ff}.doc[data-status=na] .mark{color:#aab2bb}
+.overlay{display:none;position:fixed;inset:0;background:#06090cc2;z-index:5}.overlay.show{display:block}
+.drawer{position:fixed;top:0;right:0;height:100dvh;width:min(550px,100%);background:#2e3236;border-left:1px solid #555a62;box-shadow:-30px 0 80px #08090a85;padding:24px;overflow:auto;z-index:6;display:none}
+.drawer.show{display:block}.drawerhead{display:flex;justify-content:space-between;align-items:center;gap:16px}.drawer h2{font-size:21px;line-height:1.35;margin:22px 0}
+.label{display:block;margin:22px 0 8px;color:#d5dade;font-weight:650;font-size:12px}.full{width:100%}textarea{resize:vertical}
+.upload{display:block;text-align:center;border:1px dashed #969da4;background:#3b4045;border-radius:10px;padding:24px;cursor:pointer;color:#fff}.upload:hover{background:#495059}
+.filelist{padding:0;margin:12px 0;list-style:none}.filelist li{display:flex;gap:9px;align-items:center;justify-content:space-between;border-bottom:1px solid #494e54;padding:11px 0}
+.filelist li span{flex:1;min-width:0;overflow-wrap:anywhere}.filelist li button{font-size:12px;padding:7px 10px}.filelist .empty{color:#aab3bb}
+.notice{margin:12px 0;font-size:12px;color:#b8c4cc}.notice.error{color:#ffd090}.notice.success{color:#76e7b3}
+.loading{padding:25px;text-align:center;color:#c6cdd4}
+@media(max-width:660px){header{padding:19px 16px}main{padding:17px 13px}.metrics{grid-template-columns:repeat(2,minmax(0,1fr))}.metric{padding:13px}.toolbar input{flex-basis:100%}.toolbar select{flex:1}.drawer{padding:18px}.doc{padding:12px}.count{display:none}.actions{width:100%}.topbar .actions .btn{flex:1}}
+</style>
+</head>
+<body>
+<header><h1>Expediente socioeconómico</h1><p>Pericia de alimentos · Documentos y seguimiento</p></header>
+<main>
+<section id="loginScreen" class="gate panel">
+  <h2>Acceso privado</h2>
+  <p>Ingresa con tu correo para consultar y guardar el expediente directamente en la nube. Los archivos de este sistema no se guardan en el navegador.</p>
+  <form id="loginForm"><input id="email" class="field" type="email" required autocomplete="email" placeholder="Tu correo electrónico"><button id="loginButton" class="btn primary" type="submit">Enviar enlace de acceso</button></form>
+  <p id="loginStatus" class="statusline" role="status">Conectando con Supabase…</p>
+  <p class="muted" style="font-size:12px">Utiliza siempre el mismo correo desde todos tus computadores. La contraseña general del sitio y el acceso por correo son protecciones diferentes.</p>
+</section>
+<section id="workspace" hidden>
+ <div class="topbar panel">
+  <div><strong>Expediente en la nube</strong><p><span id="userEmail"></span> · <span id="syncLabel">Sincronizando…</span></p></div>
+  <div class="actions"><button class="btn" id="refresh">↻ Actualizar</button><button class="btn" id="logout">Cerrar sesión</button></div>
+ </div>
+ <div class="metrics">
+  <div class="metric">Requisitos<strong id="total">42</strong></div>
+  <div class="metric green">Completados<strong id="done">0</strong></div>
+  <div class="metric yellow">Por revisar<strong id="pending">42</strong></div>
+  <div class="metric">Avance<strong id="percent">0%</strong></div>
+ </div>
+ <div class="progress"><span id="progress"></span></div>
+ <div class="toolbar"><input class="field" id="search" placeholder="Buscar un documento…"><select id="filter" class="field"><option value="all">Todos los estados</option><option value="pending">Pendiente</option><option value="review">En revisión</option><option value="done">Completado</option><option value="na">No corresponde</option></select></div>
+ <div id="groups"></div>
+ <p class="muted" style="font-size:12px">Los cambios solo se consideran guardados cuando Supabase confirma la operación. Límite por archivo: 25 MB. Conserva respaldos independientes de tus documentos importantes.</p>
+</section>
+</main>
+<div class="overlay" id="overlay"></div>
+<aside id="drawer" class="drawer" aria-label="Documento seleccionado">
+ <div class="drawerhead"><small id="docCategory"></small><button class="btn" id="close">Cerrar ×</button></div>
+ <h2 id="docTitle"></h2>
+ <label class="label" for="docStatus">Estado</label>
+ <select class="field full" id="docStatus"><option value="pending">Pendiente</option><option value="review">En revisión</option><option value="done">Completado</option><option value="na">No corresponde</option></select>
+ <label class="label" for="upload">Adjuntar documentos a la nube</label>
+ <label class="upload">＋ Seleccionar uno o varios archivos
+  <input hidden type="file" id="upload" multiple accept=".pdf,.doc,.docx,.xls,.xlsx,.png,.jpg,.jpeg,.webp,.heic,.txt">
+ </label>
+ <p id="uploadMessage" class="notice" role="status"></p>
+ <ul id="fileList" class="filelist"></ul>
+ <label class="label" for="docNotes">Notas u observaciones</label>
+ <textarea id="docNotes" class="field full" rows="4" placeholder="Fechas, antecedentes pendientes, observaciones…"></textarea>
+ <div class="actions" style="margin-top:11px"><button class="btn primary" id="saveNotes">Guardar observaciones</button></div>
+ <p id="saveMessage" class="notice" role="status"></p>
+</aside>
+<script src="./cloud-config.js"></script>
+<script type="module">
+import { createClient } from "https://esm.sh/@supabase/supabase-js@2.57.4";
+const categories=[["Identidad y familia","Certificado de nacimiento del adulto peritado/a|Certificado de antecedentes del adulto peritado/a|Certificado de nacimiento hijos/as|Certificado de matrimonio en caso de corresponder|Cese de convivencia (en caso de corresponder)"],["Ingresos y tributación","Carpeta Tributaria completa personalizada últimos 4 años: (Se obtiene en la página www.sii.cl Se enviarán indicaciones específicas de cómo acceder a ella en caso de presentar dudas)|Últimas 12 liquidaciones de sueldo|Copia del contrato laboral|Informes anuales boleta de honorarios SII (página www.sii.cl) últimos 2 años|Otros documentos que acrediten ingresos: contratos de arriendos de propiedades, colilla de pensión, copia de cartola de cuenta bancaria en donde se acrediten pagos o depósitos monetarios, entre otros.|Liquidaciones de sueldo del periodo en que se fijó la actual pensión de alimentos|Certificado de remuneraciones imponibles AFP con Rut del empleador|Certificado Cotizaciones AFP histórico|Certificado de cuentas AFP( en donde se señale total de ahorros previsionales, cuentas APV entre otras)"],["Patrimonio y cuentas","Cartola o certificados depósito a plazos, fondos mutuos, etc.|Consulta SII propiedades asociadas al Rut (página www.sii.cl)|Certificado Avalúo Fiscal de las propiedades (página www.sii.cl)|Certificado Avalúo Fiscal automóvil|Permiso de circulación automóvil|Cartolas de todas las cuentas corrientes y/o vista (últimos 12 meses)|Estados de cuenta tarjetas de crédito (últimos 12 meses)|Certificado o documentación que acredite deudas (si corresponde)|Cartola cuenta pensión de alimentos (si corresponde) últimos 12 meses|En caso de formar parte de una o más sociedades, remitir Escritura, Balance General (firmada por contador/a) y Carpeta Tributaria (incluyendo F22 y F29 actualizado) de cada una de ellas."],["Vivienda y gastos","Contrato de arriendo de la vivienda en donde vive / copia de la escritura de la vivienda|Boletas de servicios básicos (agua, gas, luz)|Boletas de otros servicios: internet, telefonía, TV cable, etc|Documento que acredite pago de dividendo|Documento que acredite créditos hipotecarios (monto crédito, cuotas, deuda actualizada)|Documento bancario que acredite créditos de consumo (monto crédito, cuotas, deuda actualizada)|Boletas de compras mensuales o documentos que acrediten gastos (supermercado, peluquería, vestimenta, dentista, médico, vacaciones, entretención, mensualidad o matrículas escolares, útiles escolares, etc).|Certificado de afiliación a FONASA o ISAPRE y cargas familiares|Otros documentos que acrediten gastos familiares"],["Salud y estudios","Cartola de prestaciones ISAPRE (pude obtenerla en la página de su Isapre, en donde se señalan las atenciones y reembolsos realizados por usted y sus cargas familiares)|Certificado o contrato seguros de salud complementarios (seguros enfermedades catastróficas, seguros de vida, seguros escolares, etc)|Certificados o informes médicos, psiquiátricos, psicológicos, en caso de asistir a tratamientos o terapias.|Recetas o documentos que acrediten tratamientos|Certificado de estudios o títulos técnicos o universitarios"],["Hijos y judiciales","Carnet de control de salud en caso de corresponder, o documento que acredite asistencia a controles médicos o pediátricos del niño/a a su cargo|Certificado alumno regular de los hijos o niños a su cargo|Certificado de notas o informes escolares del niño/a (s)|Documentación que acredite antecedentes judiciales: causas anteriores."]];
+const docs=categories.flatMap(([name,titles],ci)=>titles.split("|").map((title,j)=>({id:ci+"-"+j,ci,title})));
+const labels={pending:"Pendiente",review:"En revisión",done:"Completado",na:"No corresponde"};
+const icons={pending:"○",review:"◐",done:"✓",na:"—"};
+const el=id=>document.getElementById(id);
+const cfg=window.PERICIA_SUPABASE||{};
+const maxSize=25*1024*1024;
+const allowedTypes=new Set(["application/pdf","application/msword","application/vnd.openxmlformats-officedocument.wordprocessingml.document","application/vnd.ms-excel","application/vnd.openxmlformats-officedocument.spreadsheetml.sheet","image/jpeg","image/png","image/webp","image/heic","text/plain","application/octet-stream"]);
+let client=null,user=null,states=new Map(),files=[],active=null,loading=false;
+function note(id,text,error=false){el(id).textContent=text;el(id).className=id==="loginStatus"?"statusline":("notice"+(error?" error":" success"))}
+function current(id){return states.get(id)||{doc_id:id,status:"pending",notes:""}}
+function status(id){return current(id).status||"pending"}
+function listDoc(id){return files.filter(f=>f.doc_id===id)}
+function setAppVisible(ok){el("loginScreen").hidden=ok;el("workspace").hidden=!ok;if(!ok)closeDrawer()}
+function render(){
+ const done=docs.filter(d=>status(d.id)==="done").length;
+ const na=docs.filter(d=>status(d.id)==="na").length;
+ const left=docs.filter(d=>["pending","review"].includes(status(d.id))).length;
+ const pct=docs.length===na?100:Math.round(done/(docs.length-na)*100);
+ el("total").textContent=docs.length;el("done").textContent=done;el("pending").textContent=left;el("percent").textContent=pct+"%";el("progress").style.width=pct+"%";
+ const q=el("search").value.toLowerCase().trim(),f=el("filter").value;
+ el("groups").replaceChildren();
+ for(const [name] of categories){
+  const ci=categories.findIndex(c=>c[0]===name);
+  const all=docs.filter(d=>d.ci===ci);
+  const shown=all.filter(d=>d.title.toLowerCase().includes(q)&&(f==="all"||status(d.id)===f));
+  if(!shown.length)continue;
+  const section=document.createElement("section");section.className="group";
+  const heading=document.createElement("h2");heading.textContent=name+" · "+all.filter(d=>status(d.id)==="done").length+"/"+all.length;section.append(heading);
+  for(const d of shown){
+   const button=document.createElement("button");button.type="button";button.className="doc";button.dataset.status=status(d.id);
+   const mark=document.createElement("span");mark.className="mark";mark.textContent=icons[status(d.id)];
+   const title=document.createElement("span");title.className="docname";title.textContent=d.title;
+   const count=document.createElement("span");count.className="count";const n=listDoc(d.id).length;count.textContent=n+" archivo"+(n===1?"":"s");
+   const pill=document.createElement("span");pill.className="pill "+status(d.id);pill.textContent=labels[status(d.id)];
+   button.append(mark,title,count,pill);button.onclick=()=>openDrawer(d);section.append(button);
+  }
+  el("groups").append(section);
+ }
 }
-window.periciaLocal={docs,metadata,byDoc};
-(async()=>{try{db=await openDb();for(const m of await request(transact('meta').getAll()))metadata[m.id]=m;await readLegacy();render()}catch(e){alert('Este navegador no permite almacenamiento local: '+e.message)}})();
-</script><script src="./cloud-config.js"></script><script src="./cloud.js"></script></body></html>
+function openDrawer(d){active=d;el("docCategory").textContent=categories[d.ci][0];el("docTitle").textContent=d.title;el("docStatus").value=status(d.id);el("docNotes").value=current(d.id).notes||"";el("drawer").classList.add("show");el("overlay").classList.add("show");note("saveMessage","");note("uploadMessage","");renderFiles()}
+function closeDrawer(){el("drawer").classList.remove("show");el("overlay").classList.remove("show");active=null}
+function renderFiles(){
+ if(!active)return;el("fileList").replaceChildren();
+ const list=listDoc(active.id);
+ if(!list.length){const li=document.createElement("li");li.className="empty";li.textContent="Aún no hay archivos adjuntos";el("fileList").append(li);return}
+ for(const f of list){
+  const li=document.createElement("li");const name=document.createElement("span");name.textContent=f.file_name;
+  const download=document.createElement("button");download.className="btn";download.textContent="↓ Abrir";download.onclick=()=>downloadFile(f);
+  const remove=document.createElement("button");remove.className="btn";remove.textContent="Eliminar";remove.onclick=()=>deleteFile(f);
+  li.append(name,download,remove);el("fileList").append(li);
+ }
+}
+async function load(){
+ if(!user)return;loading=true;el("syncLabel").textContent="Cargando…";
+ const [s,f]=await Promise.all([client.from("pericia_document_states").select("doc_id,status,notes"),client.from("pericia_document_files").select("id,doc_id,client_file_id,file_name,storage_path,size_bytes,content_type,created_at")]);
+ if(s.error||f.error){loading=false;el("syncLabel").textContent="Error de conexión";throw s.error||f.error}
+ states=new Map(s.data.map(x=>[x.doc_id,x]));files=f.data;loading=false;el("syncLabel").textContent="Datos guardados en Supabase ✓";render();renderFiles();
+}
+async function authorize(session){
+ if(!session?.user){user=null;states=new Map();files=[];active=null;setAppVisible(false);note("loginStatus","Introduce tu correo para recibir un enlace de acceso.");return}
+ if(user?.id===session.user.id && !el("workspace").hidden)return;
+ user=session.user;el("userEmail").textContent=user.email||"";setAppVisible(true);
+ try{await load()}catch(e){note("loginStatus","No se pudieron leer los datos. "+e.message,true);el("syncLabel").textContent="Error de conexión";alert("No se pudieron cargar los archivos en la nube: "+e.message)}
+}
+async function saveState(id,newState,newNotes){
+ if(!user)throw Error("No hay sesión iniciada.");
+ const {data,error}=await client.from("pericia_document_states").upsert({user_id:user.id,doc_id:id,status:newState,notes:newNotes||"",updated_at:new Date().toISOString()},{onConflict:"user_id,doc_id"}).select("doc_id,status,notes").single();
+ if(error)throw error;
+ states.set(id,data);render();return data;
+}
+async function uploadSelected(e){
+ if(!active||!user)return;
+ const docId=active.id;const chosen=Array.from(e.target.files||[]);
+ if(!chosen.length)return;
+ el("upload").disabled=true;let successes=0;const failures=[];
+ note("uploadMessage","Subiendo "+chosen.length+" archivo(s)…");
+ for(const f of chosen){
+  if(f.size>maxSize){failures.push(f.name+" (supera 25 MB)");continue}
+  const kind=f.type||"application/octet-stream";
+  if(!allowedTypes.has(kind)){failures.push(f.name+" (tipo no admitido)");continue}
+  const clientFileId=crypto.randomUUID();
+  const storagePath=user.id+"/"+docId+"/"+crypto.randomUUID();
+  const {error:upErr}=await client.storage.from("pericia-documents").upload(storagePath,f,{contentType:kind,cacheControl:"0",upsert:false});
+  if(upErr){failures.push(f.name+" ("+upErr.message+")");continue}
+  const {data,error:dbErr}=await client.from("pericia_document_files").insert({
+   user_id:user.id,doc_id:docId,client_file_id:clientFileId,file_name:f.name,storage_path:storagePath,size_bytes:f.size,content_type:kind
+  }).select("id,doc_id,client_file_id,file_name,storage_path,size_bytes,content_type,created_at").single();
+  if(dbErr){await client.storage.from("pericia-documents").remove([storagePath]);failures.push(f.name+" ("+dbErr.message+")");continue}
+  files.push(data);successes++;
+  if(active?.id===docId){note("uploadMessage","Guardados en la nube: "+successes+"/"+chosen.length);renderFiles()}
+  render();
+ }
+ el("upload").disabled=false;e.target.value="";
+ if(failures.length){note("uploadMessage","Guardados: "+successes+". Fallidos: "+failures.length+". "+failures.slice(0,2).join("; "),true)}
+ else note("uploadMessage",successes+" archivo(s) guardados en Supabase ✓");
+}
+async function downloadFile(file){
+ try{
+  const {data,error}=await client.storage.from("pericia-documents").download(file.storage_path);
+  if(error)throw error;
+  const u=URL.createObjectURL(data),a=document.createElement("a");
+  a.href=u;a.download=file.file_name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),60000);
+ }catch(e){note("uploadMessage","Error al abrir archivo: "+e.message,true)}
+}
+async function deleteFile(file){
+ if(!confirm("¿Eliminar definitivamente de la nube «"+file.file_name+"»? Esta acción no se puede deshacer."))return;
+ const {error:deleteStorageError}=await client.storage.from("pericia-documents").remove([file.storage_path]);
+ if(deleteStorageError){note("uploadMessage","No se pudo eliminar el archivo: "+deleteStorageError.message,true);return}
+ const {error:deleteRecordError}=await client.from("pericia_document_files").delete().eq("id",file.id);
+ if(deleteRecordError){note("uploadMessage","Se eliminó el archivo, pero falta actualizar su registro: "+deleteRecordError.message,true);return}
+ files=files.filter(x=>x.id!==file.id);render();renderFiles();note("uploadMessage","Archivo eliminado de la nube ✓");
+}
+el("loginForm").addEventListener("submit",async e=>{
+ e.preventDefault();
+ if(!client){note("loginStatus","No se pudo inicializar Supabase.",true);return}
+ const email=el("email").value.trim();
+ el("loginButton").disabled=true;note("loginStatus","Enviando enlace…");
+ try{
+  const {error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});
+  if(error)throw error;
+  note("loginStatus","Revisa tu correo. Abre el enlace recibido para entrar al expediente.");
+ }catch(e){note("loginStatus","Error: "+e.message,true)}
+ finally{el("loginButton").disabled=false}
+});
+el("logout").onclick=async()=>{
+ const {error}=await client.auth.signOut();if(error)alert("No se pudo cerrar sesión: "+error.message)
+};
+el("refresh").onclick=async()=>{
+ try{await load()}catch(e){alert("No se pudo actualizar: "+e.message)}
+};
+el("search").oninput=render;el("filter").onchange=render;el("close").onclick=closeDrawer;el("overlay").onclick=closeDrawer;
+el("docStatus").onchange=async e=>{
+ if(!active)return;const d=active,select=e.target;select.disabled=true;
+ try{await saveState(d.id,select.value,el("docNotes").value);note("saveMessage","Estado guardado en Supabase ✓")}
+ catch(err){select.value=status(d.id);note("saveMessage","No se guardó el cambio: "+err.message,true)}
+ finally{select.disabled=false}
+};
+el("saveNotes").onclick=async()=>{
+ if(!active)return;const d=active,b=el("saveNotes");b.disabled=true;
+ try{await saveState(d.id,el("docStatus").value,el("docNotes").value);note("saveMessage","Observaciones guardadas en Supabase ✓")}
+ catch(e){note("saveMessage","No se guardaron: "+e.message,true)}
+ finally{b.disabled=false}
+};
+el("upload").onchange=uploadSelected;
+try{
+ if(!cfg.url||!cfg.publishableKey)throw Error("Falta la configuración de la base de datos.");
+ client=createClient(cfg.url,cfg.publishableKey,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+ const {data,error}=await client.auth.getSession();if(error)throw error;
+ await authorize(data.session);
+ client.auth.onAuthStateChange((event,session)=>{
+  if(event==="SIGNED_IN"||event==="SIGNED_OUT"||event==="TOKEN_REFRESHED"){setTimeout(()=>authorize(session),0)}
+ });
+}catch(e){note("loginStatus","No se pudo conectar con la nube: "+e.message,true)}
+</script>
+</body></html>
