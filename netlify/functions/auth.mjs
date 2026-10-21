@@ -20,7 +20,7 @@ export default async function(req,ctx){
   if(!value)throw Error("Acceso no configurado");
   const [salt,hex]=value.split(":");
   const expected=Buffer.from(hex||"","hex"),got=scryptSync(input.pin,Buffer.from(salt,"hex"),expected.length);
-  const valid=expected.length===32&&timingSafeEqual(expected,got);
+  const valid=expected.length===64&&timingSafeEqual(expected,got);
   if(!valid){
    record.attempts++;
    if(record.attempts>=5)record.blocked=now+15*60*1000;
