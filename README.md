@@ -12,10 +12,16 @@ Al iniciar sesión por primera vez se muestran 42 requisitos sin completar, sin 
 
 ## Configuración de acceso
 
+La versión vigente usa **correo y contraseña**, no enlaces mágicos de correo. Para habilitar la primera cuenta, ve a Authentication > Users dentro del proyecto Supabase. Hay un usuario antiguo sin confirmar; como los datos del expediente están vacíos, puedes eliminar esa cuenta desde la consola y crearla nuevamente con Add user > Create new user, estableciendo una contraseña larga y marcando **Auto Confirm User**. No guardes contraseñas en el código ni las compartas por chat.
+
+Por seguridad se recomienda desactivar nuevas altas públicas en Authentication > Sign In / Providers una vez que la cuenta esté creada. La autenticación sigue siendo obligatoria para acceder a los 42 requisitos y guardar documentos.
+
+
+
 En Supabase Authentication > URL Configuration, poner la URL principal y la redirección permitida como:
 https://pericia-socioeconomica.netlify.app
 
-Es necesario abrir el enlace de confirmación recibido por correo. Sin una sesión verificada no es posible acceder ni subir documentos.
+No es necesario enviar enlaces por correo cuando ya existe una cuenta confirmada con contraseña.
 
 ## Comprobación entre computadores
 
