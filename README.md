@@ -1,11 +1,19 @@
 # Expediente socioeconómico
 
-Dashboard estático de 42 requisitos de la pericia. Adjunta múltiples archivos por requisito; se conservan en IndexedDB dentro del navegador. Descarga respaldos JSON y guárdalos en un lugar seguro.
+Dashboard de 42 requisitos: documentos, estados y notas. Los archivos locales siguen en IndexedDB. El código adicional de sincronización con Supabase ya está preparado, pero la nube aún no está activa.
 
-## Despliegue
+## Habilitar sincronización entre computadores
 
-Vincula el repositorio en Netlify, configuración de compilación vacía y directorio de publicación `.`. El proyecto Netlify `pericia-socioeconomica` ya tiene una contraseña de sitio configurada en Netlify; **no agregar la contraseña al repositorio**.
+1. Elegir un proyecto en https://supabase.com/dashboard.
+2. Ejecutar `supabase/schema.sql` desde Supabase SQL Editor para crear las tablas con RLS y el depósito privado.
+3. Configurar Supabase Auth con correo electrónico y permitir la redirección a https://pericia-socioeconomica.netlify.app.
+4. Completar en `cloud-config.js` la URL del proyecto y su clave **publishable**. No utilizar claves secretas ni subir documentos a GitHub.
+5. Desde el PC donde están los archivos, iniciar sesión por correo y pulsar «Subir mis datos locales». Luego usar el mismo correo desde otro PC.
+
+El traslado no elimina archivos locales. La carga en la nube requiere conexión y puede fallar; verifica el resultado. El respaldo JSON del navegador no incluye archivos existentes exclusivamente en la nube.
 
 ## Seguridad
 
-Los archivos adjuntos nunca se suben al repositorio ni a Netlify. Se mantienen por navegador/dispositivo, sin sincronización y sin cifrado adicional. La protección de acceso al sitio no cifra ni protege el almacenamiento IndexedDB frente a quienes tengan acceso al perfil local del navegador. Para información muy sensible se recomienda almacenamiento autenticado, cifrado y con copias de seguridad. El código del repositorio es público, no subir documentación privada a GitHub.
+La base de datos y el bucket usan permisos por usuario autenticado; el bucket no es público. La contraseña general de Netlify no sustituye la autenticación personal. Reemplaza la clave de cuatro dígitos por otra más segura antes de subir documentos sensibles.
+
+El sistema no ofrece cifrado de extremo a extremo ni una política automática de conservación y recuperación. Conserva respaldos independientes.
