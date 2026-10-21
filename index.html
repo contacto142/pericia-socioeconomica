@@ -20,7 +20,7 @@ small,.muted{color:#b6bbc2}
 .field::placeholder{color:#aeb7bf}
 .panel{background:#303338;border:1px solid #484d54;border-radius:13px}
 .gate{max-width:550px;padding:25px;margin:55px auto}.gate h2{font-size:22px;margin-bottom:7px}.gate p{color:#b9bec6}
-.gate form{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}.gate input{flex:1;min-width:200px}.statusline{color:#b6c4cc;font-size:12px;min-height:20px}
+.gate form{display:flex;flex-wrap:wrap;gap:10px;margin:20px 0}.gate input{flex:1 1 100%;min-width:200px}.gate form button{width:100%}.statusline{color:#b6c4cc;font-size:12px;min-height:20px}
 .topbar{display:flex;gap:12px;justify-content:space-between;align-items:center;flex-wrap:wrap;padding:15px 18px;margin-bottom:20px}
 .topbar strong{font-size:14px}.topbar p{margin:4px 0 0;color:#acb7bd;font-size:12px}.actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
 .metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
@@ -55,10 +55,10 @@ small,.muted{color:#b6bbc2}
 <main>
 <section id="loginScreen" class="gate panel">
   <h2>Acceso privado</h2>
-  <p>Ingresa con tu correo para consultar y guardar el expediente directamente en la nube. Los archivos de este sistema no se guardan en el navegador.</p>
-  <form id="loginForm"><input id="email" class="field" type="email" required autocomplete="email" placeholder="Tu correo electrónico"><button id="loginButton" class="btn primary" type="submit">Enviar enlace de acceso</button></form>
+  <p>Expediente nuevo y vacío. Los documentos, estados y observaciones se guardan directamente en Supabase, no como archivos locales.</p>
+  <form id="loginForm"><input id="email" class="field" type="email" required autocomplete="email" placeholder="Tu correo electrónico"><input id="password" class="field" type="password" required minlength="10" autocomplete="current-password" placeholder="Contraseña"><button id="loginButton" class="btn primary" type="submit">Entrar al expediente</button></form>
   <p id="loginStatus" class="statusline" role="status">Conectando con Supabase…</p>
-  <p class="muted" style="font-size:12px">Utiliza siempre el mismo correo desde todos tus computadores. La contraseña general del sitio y el acceso por correo son protecciones diferentes.</p>
+  <p class="muted" style="font-size:12px">Crea primero tu cuenta desde <a href="https://supabase.com/dashboard/project/pwmkdsvakiyttqwhblhe/auth/users" target="_blank" rel="noopener noreferrer" style="color:#dbe9ec">Supabase → Authentication → Users</a> con contraseña segura y correo confirmado. Luego usa esa cuenta desde cualquier computador.</p>
 </section>
 <section id="workspace" hidden>
  <div class="topbar panel">
@@ -157,7 +157,7 @@ async function load(){
  states=new Map(s.data.map(x=>[x.doc_id,x]));files=f.data;loading=false;el("syncLabel").textContent="Datos guardados en Supabase ✓";render();renderFiles();
 }
 async function authorize(session){
- if(!session?.user){user=null;states=new Map();files=[];active=null;setAppVisible(false);note("loginStatus","Introduce tu correo para recibir un enlace de acceso.");return}
+ if(!session?.user){user=null;states=new Map();files=[];active=null;setAppVisible(false);note("loginStatus","Ingresa el correo y contraseña de tu cuenta.");return}
  if(user?.id===session.user.id && !el("workspace").hidden)return;
  user=session.user;el("userEmail").textContent=user.email||"";setAppVisible(true);
  try{await load()}catch(e){note("loginStatus","No se pudieron leer los datos. "+e.message,true);el("syncLabel").textContent="Error de conexión";alert("No se pudieron cargar los archivos en la nube: "+e.message)}
@@ -214,12 +214,14 @@ el("loginForm").addEventListener("submit",async e=>{
  e.preventDefault();
  if(!client){note("loginStatus","No se pudo inicializar Supabase.",true);return}
  const email=el("email").value.trim();
- el("loginButton").disabled=true;note("loginStatus","Enviando enlace…");
+ el("loginButton").disabled=true;note("loginStatus","Verificando cuenta…");
  try{
-  const {error}=await client.auth.signInWithOtp({email,options:{emailRedirectTo:location.origin+location.pathname}});
+  const {data,error}=await client.auth.signInWithPassword({email,password:el("password").value});
   if(error)throw error;
-  note("loginStatus","Revisa tu correo. Abre el enlace recibido para entrar al expediente.");
- }catch(e){note("loginStatus","Error: "+e.message,true)}
+  if(!data.session)throw Error("No se pudo iniciar la sesión.");
+  el("password").value="";
+  note("loginStatus","Acceso confirmado.");
+ }catch(e){note("loginStatus","No se pudo acceder: "+e.message+". Revisa que la cuenta exista, tenga contraseña y esté confirmada.",true)}
  finally{el("loginButton").disabled=false}
 });
 el("logout").onclick=async()=>{
