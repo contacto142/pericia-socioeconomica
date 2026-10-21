@@ -1,7 +1,5 @@
-// Configuración pública de Supabase. Completar SOLO después de ejecutar supabase/schema.sql.
-// La URL y la clave 'publishable/anon' pueden estar en código cliente con RLS activa.
-// NUNCA agregar service_role, secret keys, contraseñas o documentos a GitHub.
+// Clave publicable para navegador. Acceso a datos protegido por Auth + políticas RLS.
 window.PERICIA_SUPABASE = {
-  url: '',
-  publishableKey: ''
+  url: 'https://pwmkdsvakiyttqwhblhe.supabase.co',
+  publishableKey: 'sb_publishable_I7GCQmWx8WJNTsVCyxVWOA_TBrbHZlR'
 };
