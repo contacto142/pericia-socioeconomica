@@ -1,34 +1,27 @@
 # Expediente socioeconómico
 
-Aplicación estática de 42 requisitos, publicada en Netlify y vinculada a un proyecto Supabase independiente.
+Dashboard con los 42 requisitos del listado pericial, diseño gris oscuro y etiquetas por estado.
 
-## Modalidad vigente: solo nube
+## Acceso vigente
 
-El archivo `index.html` exige inicio de sesión por correo. Una vez autenticado, lee y guarda estados, notas y archivos exclusivamente en Supabase. Los archivos adjuntos no se guardan en IndexedDB ni en el almacenamiento local del navegador. Supabase puede almacenar la sesión de acceso en el navegador.
+Una sola pantalla de clave numérica de cuatro dígitos. Ya no se usa inicio de sesión con correo. La clave se verifica en una función de Netlify contra un valor cifrado mediante scrypt almacenado en variables de entorno. Tras ingresar, la sesión se almacena en una cookie Secure, HttpOnly, SameSite=Strict por hasta 12 horas. Hay límites de intentos, aunque una clave de cuatro dígitos **no se recomienda para archivos sensibles**.
 
-Cada usuario ve únicamente sus datos mediante las políticas RLS. El depósito `pericia-documents` es privado. El límite de cada archivo es 25 MB.
+## Almacenamiento vigente
 
-Al iniciar sesión por primera vez se muestran 42 requisitos sin completar, sin importar lo que aparezca en el navegador de versiones anteriores. Los datos antiguos que hayan quedado en IndexedDB no se borran, pero esta interfaz ya no los lee. Si se desean recuperar, hay que usar una versión anterior o un respaldo; esta versión está diseñada para empezar de cero.
+Archivos y estados se guardan en **Netlify Blobs**, en almacenes privados de ámbito de sitio a través de funciones protegidas por la sesión. No se usa Supabase en esta versión. Las tablas anteriores de Supabase permanecen sin transferir archivos. No se guardan documentos en IndexedDB.
 
-## Configuración de acceso
+- Los requisitos comienzan pendientes; solo cambia su estado al recibir confirmación del servidor.
+- Se pueden adjuntar varios archivos de hasta 25 MB por archivo. Las cargas se realizan en partes.
+- Los archivos se almacenan en Netlify Blobs y pueden recuperarse desde otro computador con la misma clave.
+- Las operaciones de guardar, consultar, descargar y eliminar deben verificar la cookie firmada del servidor.
+- Haz copias independientes de los documentos; este sistema no implementa versionado de archivos ni backups exportables.
 
-La versión vigente usa **correo y contraseña**, no enlaces mágicos de correo. Para habilitar la primera cuenta, ve a Authentication > Users dentro del proyecto Supabase. Hay un usuario antiguo sin confirmar; como los datos del expediente están vacíos, puedes eliminar esa cuenta desde la consola y crearla nuevamente con Add user > Create new user, estableciendo una contraseña larga y marcando **Auto Confirm User**. No guardes contraseñas en el código ni las compartas por chat.
+## Seguridad operativa
 
-Por seguridad se recomienda desactivar nuevas altas públicas en Authentication > Sign In / Providers una vez que la cuenta esté creada. La autenticación sigue siendo obligatoria para acceder a los 42 requisitos y guardar documentos.
+El repositorio GitHub es público, pero las variables `PERICIA_PIN_HASH` y `PERICIA_SESSION_SECRET` solo existen en el entorno privado de Netlify Functions. No incorporar secretos ni documentos al repositorio.
 
+Cambiar cuanto antes la clave de cuatro dígitos por una contraseña larga, especialmente por tratarse de antecedentes financieros y judiciales. Compartir la clave equivale a compartir acceso de lectura y escritura a todo el expediente.
 
+## Publicación
 
-En Supabase Authentication > URL Configuration, poner la URL principal y la redirección permitida como:
-https://pericia-socioeconomica.netlify.app
-
-No es necesario enviar enlaces por correo cuando ya existe una cuenta confirmada con contraseña.
-
-## Comprobación entre computadores
-
-Iniciar sesión en PC 1, cargar un documento y esperar la confirmación de Supabase. Iniciar sesión con el mismo correo en PC 2 y comprobar que el documento aparece y se descarga. El cambio de estado y las observaciones se guardan del mismo modo.
-
-## Seguridad
-
-No guardar documentos reales en GitHub. La clave publicable de Supabase no es secreta; las claves secretas nunca deben estar en el código del navegador. La contraseña compartida de Netlify debe reemplazarse por una más segura. Conservar copias independientes de los archivos originales.
-
-Nota técnica: `cloud.js` pertenece a una versión anterior con sincronización local; la página vigente no lo carga.
+Netlify conectado a la rama `main`. La página estática `index.html` invoca las funciones privadas `/api/pericia/auth` y `/api/pericia/data` basadas en `@netlify/blobs`. Los depósitos de datos son específicos del sitio y persisten entre despliegues.
