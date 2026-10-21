@@ -35,6 +35,10 @@ create table if not exists public.pericia_document_files (
 );
 alter table public.pericia_document_files enable row level security;
 
+grant usage on schema public to authenticated;
+grant select, insert, update on public.pericia_document_states to authenticated;
+grant select, insert, delete on public.pericia_document_files to authenticated;
+
 drop policy if exists "files_read_owner" on public.pericia_document_files;
 create policy "files_read_owner" on public.pericia_document_files
 for select to authenticated using (user_id = (select auth.uid()));
