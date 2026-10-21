@@ -1,7 +1,7 @@
 import { createHmac, timingSafeEqual } from "node:crypto";
 const COOKIE="__Host-pericia_session";
 const maxAge=12*60*60;
-function secret(){const s=Netlify.env.get("PERICIA_SESSION_SECRET");if(!s||s.length<32)throw Error("Session secret not configured");return s}
+function secret(){const s=Netlify.env.get("PERICIA_SESSION_SECRET")||Netlify.env.get("PERICIA_PIN_HASH");if(!s||s.length<32)throw Error("Session signing key not configured");return s}
 function signature(payload){return createHmac("sha256",secret()).update(payload).digest("base64url")}
 export function issueSession(){
  const payload="v1."+String(Date.now()+maxAge*1000)+"."+crypto.randomUUID();
