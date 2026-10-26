@@ -1,6 +1,6 @@
 # Expediente socioeconómico
 
-Dashboard con los 42 requisitos del listado pericial, diseño gris oscuro y etiquetas por estado.
+Dashboard con 43 requisitos: los 42 del listado pericial original más el nuevo requisito «Comprobantes de pago de la pensión y liquidaciones de la causa Z-2025-2023», ubicado al final de «Hijos y judiciales», diseño gris oscuro y etiquetas por estado.
 
 ## Acceso vigente
 
